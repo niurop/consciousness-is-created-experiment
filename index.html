@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consciousness is created experiment</title>
+    <script>
+      let flash = false;
+      let delay = 0;
+      let step = 10;
+      let maxDelay = 200;
+      userAction = () => {
+        if (flash) return;
+        flash = true;
+        delay += step;
+        if (delay >= maxDelay) delay = 0;
+        console.log(delay);
+        setTimeout(() => {
+          document.body.style.backgroundColor = "lightgreen";
+          setTimeout(() => {
+            flash = false;
+            document.body.style.backgroundColor = "white";
+          }, 100);
+        }, delay);
+      };
+
+      window.onload = () => {
+        let pressed = false;
+        window.onkeydown = () => {
+          if (pressed) return;
+          userAction();
+          pressed = true;
+        };
+        window.onkeyup = () => {
+          pressed = false;
+        };
+      };
+    </script>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+      div {
+        border: 0;
+        width: 80vw;
+        height: 80vh;
+        margin: 10vh 10vw 10vh 10vw;
+        font-size: 75vh;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div onclick="userAction()">
+      <svg viewBox="0 0 10000 5000">
+        <text x="1000" y="2500">Click me! or press any key</text>
+      </svg>
+    </div>
+  </body>
+</html>
